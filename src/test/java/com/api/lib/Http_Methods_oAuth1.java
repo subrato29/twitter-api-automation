@@ -11,7 +11,7 @@ public class Http_Methods_oAuth1 extends AuthFactory{
 	 * Date: 02/19/2020
 	 * @return response
 	 */
-	public static Response post(String endpoint, String post) {
+	public static Response post(String endpoint) {
 		try {
 			Response response = RestAssured.given()
 					.auth()
@@ -19,7 +19,7 @@ public class Http_Methods_oAuth1 extends AuthFactory{
 						   CONSUMER_API_SECRET, 
 						   ACCESS_TOKEN, 
 						   SECRET_TOKEN)
-					.post(endpoint + "?status=" + post);
+					.post(endpoint);
 			return response;
 		} catch (Throwable t) {
 			ReportUtil.markFailed("POST method is failed");
