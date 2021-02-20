@@ -6,3 +6,4 @@ target
 test-output
 .DS_Store
 spotify_generate_token
+\*config.properties\*
