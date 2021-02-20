@@ -2,7 +2,6 @@ package com.api.lib;
 
 import com.api.base.DriverScript;
 import com.api.utilities.CommonUtils;
-import com.api.utilities.Constants;
 
 public class AuthFactory extends DriverScript{
 	//oAuth 1.0

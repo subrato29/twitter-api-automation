@@ -3,10 +3,8 @@ package com.api.lib;
 import static io.restassured.RestAssured.given;
 import org.json.simple.JSONObject;
 import com.api.reports.ReportUtil;
-import com.api.utilities.CommonUtils;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 

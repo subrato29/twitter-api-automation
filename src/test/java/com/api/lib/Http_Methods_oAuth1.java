@@ -1,11 +1,6 @@
 package com.api.lib;
 
-import static io.restassured.RestAssured.given;
-
-import org.json.simple.JSONObject;
-
 import com.api.reports.ReportUtil;
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
