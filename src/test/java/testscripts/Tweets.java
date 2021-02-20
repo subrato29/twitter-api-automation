@@ -13,7 +13,7 @@ public class Tweets extends Http_Methods_oAuth1{
 	static String TEST_DATA = Constants.TEST_DATA;
 	
 	@Test
-	public void test() {
+	public void post_tweet() {
 		String tcId = "TC001";
 		if (isTestCaseRunnable(tcId)) {
 			String post = xls.getCellData(TEST_DATA, "RequestBody", rowNum) + " " +
