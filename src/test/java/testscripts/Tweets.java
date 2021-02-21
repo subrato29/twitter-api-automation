@@ -12,7 +12,7 @@ import io.restassured.response.Response;
 public class Tweets extends Http_Methods_oAuth1{
 	static String TEST_DATA = Constants.TEST_DATA;
 	static String tweet_id = null;
-	
+
 	@Test(priority = 1)
 	public void post_tweet() {
 		String tcId = "TC001";
@@ -25,6 +25,7 @@ public class Tweets extends Http_Methods_oAuth1{
 			int expectedResponseCode = Integer.parseInt(xls.getCellData(TEST_DATA, "ResponseCode", rowNum));
 			if (actualResponseCode == expectedResponseCode) {
 				tweet_id = String.valueOf(API_Utils.getResponseJsonPath(response).get("id"));
+				tweet = String.valueOf(API_Utils.getResponseJsonPath(response).get("text"));
 				ReportUtil.markPassed("Tweet is successfully posted where the tweet is"
 						+ ": " + tweet + " and the response time is: "
 								+ "" + API_Utils.getResponseTime(response) + " milliseconds"
@@ -38,7 +39,7 @@ public class Tweets extends Http_Methods_oAuth1{
 		}
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void destroy_tweet() {
 		String tcId = "TC002";
 		if(isTestCaseRunnable(tcId)) {
@@ -50,7 +51,6 @@ public class Tweets extends Http_Methods_oAuth1{
 				if (actualResponseCode == expectedResponseCode) {
 					String expected_tweet_id = String.valueOf(API_Utils.getResponseJsonPath(response).get("id"));
 					if (tweet_id.equals(expected_tweet_id)) {
-						System.out.println(API_Utils.getResponseBodyInJson(response));
 						ReportUtil.markPassed("Tweet is successfully destroyed"
 										+ " where the response time is: "
 										+ API_Utils.getResponseTime(response) + " milliseconds"
@@ -66,6 +66,48 @@ public class Tweets extends Http_Methods_oAuth1{
 							+ " code is: " + actualResponseCode + " expected response"
 									+ " code is: " + expectedResponseCode);
 				}
+			}
+		}
+	}
+	
+	@Test(priority = 2)
+	public void show_content_by_id() {
+		String tcId = "TC003";
+		if(isTestCaseRunnable(tcId)) {
+			endpoint = endpoint + "?id=" + tweet_id;
+			Response response = get(endpoint);
+			int actualResponseCode = API_Utils.getStatusCode(response);
+			int expectedResponseCode = Integer.parseInt(xls.getCellData(TEST_DATA, "ResponseCode", rowNum));
+			if (actualResponseCode == expectedResponseCode) {
+				String expected_tweet_id = String.valueOf(API_Utils.getResponseJsonPath(response).get("id"));
+				if (tweet_id.equals(expected_tweet_id)) {
+					ReportUtil.markPassed("Show tweet id test is successfully done"
+							+ " where the response time is: "
+							+ API_Utils.getResponseTime(response) + " milliseconds"
+							+ " and tweet id is: " 
+							+ expected_tweet_id);
+				}
+			} else {
+				ReportUtil.markFailed("Show tweet id test is failed");
+			}
+		}
+	}
+	
+	@Test(priority = 3)
+	public void lookup() {
+		String tcId = "TC004";
+		if(isTestCaseRunnable(tcId)) {
+			endpoint = endpoint + "?id=" + tweet_id;
+			Response response = get(endpoint);
+			int actualResponseCode = API_Utils.getStatusCode(response);
+			int expectedResponseCode = Integer.parseInt(xls.getCellData(TEST_DATA, "ResponseCode", rowNum));
+			if (actualResponseCode == expectedResponseCode) {
+				System.out.println(API_Utils.getResponseBodyInJson(response));
+				ReportUtil.markPassed("Lookup test is successfully done"
+						+ " where the response time is: "
+						+ API_Utils.getResponseTime(response) + " milliseconds");
+			} else {
+				ReportUtil.markFailed("Show tweet id test is failed");
 			}
 		}
 	}
