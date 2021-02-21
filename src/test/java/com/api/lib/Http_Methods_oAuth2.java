@@ -1,9 +1,7 @@
 package com.api.lib;
 
 import static io.restassured.RestAssured.given;
-import org.json.simple.JSONObject;
 import com.api.reports.ReportUtil;
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -41,15 +39,12 @@ public class Http_Methods_oAuth2 extends AuthFactory{
 	 * Date: 11/09/2020
 	 * @return response
 	 */
-	public static Response post (String endpoint, JSONObject json) {
+	public static Response post (String endpoint) {
 		try {
-			Response response = 
+			Response response =
 					given()
 						.header("Authorization", "Bearer " + BEARER_TOKEN)
-						.accept("application/json")
-						.contentType("application/json")
-						.body(json)
-					.when()
+					.when()	
 						.post(endpoint);
 			return response;
 		} catch (Throwable t) {
@@ -65,14 +60,13 @@ public class Http_Methods_oAuth2 extends AuthFactory{
 	 * Date: 12/21/2020
 	 * @return response
 	 */
-	public static Response put (String endpoint, JSONObject json) {
+	public static Response put (String endpoint) {
 		try {	
 			Response response = 
 					given()
 						.header("Authorization", "Bearer " + BEARER_TOKEN)
 						.accept("application/json")
 						.contentType("application/json")
-						.body(json)
 					.when()
 						.put(endpoint);
 			return response;
@@ -89,7 +83,7 @@ public class Http_Methods_oAuth2 extends AuthFactory{
 	 * Date: 11/09/2020
 	 * @return response
 	 */
-	public static Response delete (String endpoint, JSONObject json) {
+	public static Response delete (String endpoint) {
 		RequestSpecification request = RestAssured.given();
 		Response response = request.get(endpoint);
 		response = 
@@ -97,27 +91,8 @@ public class Http_Methods_oAuth2 extends AuthFactory{
 					.header("Authorization", "Bearer " + BEARER_TOKEN)
 					.accept("application/json")
 					.contentType("application/json")
-					.body(json)
 				.when()
 					.delete(endpoint);
-		return response;
-	}
-	
-	/**
-	 * Keyword: patch
-	 * Author: Subrato Sarkar
-	 * Date: 11/10/2020
-	 * @return response
-	 */
-	public static Response patch (String endpoint, JSONObject json) {
-		Response response = 
-				given()
-					.header("Authorization", "Bearer " + BEARER_TOKEN)
-					.accept("application/json")
-					.contentType("application/json")
-					.body(json)
-				.when()
-					.patch(endpoint);
 		return response;
 	}
 }

@@ -9,7 +9,7 @@ import com.api.utilities.CommonUtils;
 import com.api.utilities.Constants;
 import io.restassured.response.Response;
 
-public class Tweets extends Http_Methods_oAuth1{
+public class Tweets_oAuth1 extends Http_Methods_oAuth1{
 	static String TEST_DATA = Constants.TEST_DATA;
 	static String tweet_id = null;
 
