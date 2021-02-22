@@ -33,7 +33,7 @@ public class ExtentManager{
 	
 	
 	public static String htmlReportPath(){
-		String reportPrefix = DriverScript.testCaseId+"_Report_";
+		String reportPrefix = "_Report_";
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	    String strDate = sdf.format(cal.getTime());
