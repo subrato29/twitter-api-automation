@@ -1,5 +1,5 @@
 ### twitter-api-automation
 
-##### Automation tool used: Rest-Assured
+##### Automation library used: Rest-Assured
 
 ##### Author: Subrato Sarkar
